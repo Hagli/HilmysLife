@@ -1,22 +1,40 @@
 #pragma once
-#include <iostream>
 #include "HilmysClass.h"
-using namespace std;
 
 class GameState : public Hilmys {
-public:
+private:
 	// shows the turn (days) of the game
-	static int m_turn;
+	 static int m_turn;
+
+public: // Manipulate game turn
+	static void turnup() {
+		m_turn++;
+	}
+
+	static void startsetturn() {
+		m_turn = 1;
+	}
 
 public:
-	//Constructor for every start iteration of the cycle (loop)
-	GameState() : Hilmys() {
-		cout << "Start of day " << m_turn + 1 << endl;
+	void game() {
+		while (m_turn < 10 && a) {
+			turnup();
+			std::cout << "Start of day " << m_turn << std::endl;
+			choose();
+			check();
+		}
 	}
-	//Destructor for every end iteration of the cycle (loop)
-	~GameState() {
-		cout << "End of day " << m_turn + 1 << endl;
-		m_turn++;
+
+	//checking stats
+	void check() {
+		if ((m_hap == 0) || (m_helt == 0) || (m_soc == 0) || (m_helt == 0) || (m_mon == 0)) {
+			a = 0;
+		}
+	}
+
+public:
+	GameState() {
+		m_turn = 0;
 	}
 };
 
